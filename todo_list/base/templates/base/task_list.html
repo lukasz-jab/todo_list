@@ -2,10 +2,10 @@
 
 {% block content %}
 
-<div class="header-bar" xmlns:margin="http://www.w3.org/1999/xhtml">
+<div class="header-bar">
     <div><h1>Hello {{ request.user | title }}</h1>
         <p>
-        <h3 margin:0 style>you have <i>{{ count }} incomplete task {{ count | pluralize:"s" }}</i></h3></p>
+        <h3>you have <i>{{ count }} incomplete task {{ count | pluralize:"s" }}</i></h3></p>
     </div>
     {% if request.user.is_authenticated %}
     <a href="{% url 'logout' %}">Logout</a>
@@ -19,9 +19,10 @@
         <input name="search-area" type="text" value="{{ search_input }}">
         <input class="button" type="submit" value="Search">
     </form>
-    <a href="{% url 'create' %}" id="add-link">&#x2b;</a>
+    <a href="{% url 'create' %}" id="add-link" style="color: #00FF00">&#x2b;</a>
 </div>
 <div class="task-items-wrapper">
+    <div class="card-body">
     {% for task in tasks %}
     <div class="task-wrapper">
         {% if task.complete %}
@@ -42,6 +43,6 @@
     {% empty %}
     <h3>No Tasks ...</h3>
     {% endfor %}
-
+    </div>
 </div>
 {% endblock content %}
